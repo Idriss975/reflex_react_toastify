@@ -1,0 +1,23 @@
+name: New Tag Trigger
+
+on:
+    push:
+        tags:
+            - 'v*'
+        branches:
+            - 'master'
+
+
+jobs:
+    Tests:
+        uses: ./.github/workflows/Tests.yml
+    
+    Build:
+        uses: ./.github/workflows/Build.yml
+        needs: Tests
+    
+    Publish:
+        uses: ./.github/workflows/Publish.yml
+        needs: Build
+        with:
+            art_name: ${{ needs.Build.outputs.art_name }}

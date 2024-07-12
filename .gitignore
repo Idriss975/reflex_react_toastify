@@ -1,0 +1,10 @@
+*.egg-info/
+*.py[cod]
+*_demo
+.vscode
+Include
+Lib
+Scripts
+__pycache__/
+dist/
+pyvenv.cfg

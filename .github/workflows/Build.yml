@@ -1,0 +1,51 @@
+name: Build
+
+on:
+  workflow_call:
+    outputs:
+        art_name:
+            description: "artifact name generated"
+            value: ${{ jobs.Build.outputs.art_name }}
+
+jobs:
+    Build:
+        outputs:
+            art_name: ${{ steps.Output.outputs.arti_name }}
+
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout Source Code
+              uses: actions/checkout@v4
+              with:
+                fetch-depth: 0
+
+            - name: Checkout to latest tag
+              run: git checkout $(git describe --tags)
+            
+            - name: Set up Python
+              uses: actions/setup-python@v3
+              with:
+                python-version: '3.8'
+            
+            - name: Install dependencies
+              run: |
+                python -m pip install --upgrade pip
+                pip install reflex
+            
+            - name: create Artifact folder
+              run: mkdir -p ~/new/artifact
+            
+            - name: Build
+              run: |
+                reflex component build --loglevel=debug
+                cp -r dist ~/new/artifact/dist
+            
+            - name: Upload Artifact
+              uses: actions/upload-artifact@v4
+              with:
+                name: artifact-${{ GITHUB.ref }}
+                path: ~/new/artifact
+                if-no-files-found: error
+            
+            - id: Output
+              run: echo "arti_name=artifact-${{ GITHUB.ref }}" >> $GITHUB_OUTPUT

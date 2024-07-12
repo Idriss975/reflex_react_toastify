@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "reflex-react-toastify"
+version = "0.0.1"
+description = "Reflex implementation of react-toastify"
+readme = "README.md"
+license = { text = "BSD 4-Clause License" }
+requires-python = ">=3.8"
+authors = [{ name = "Idriss BERCHIL", email = "idrissberchil@fedora.email" }]
+keywords = ["reflex","reflex-custom-components"]
+
+dependencies = ["reflex>=0.4.2"]
+
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "License :: OSI Approved :: BSD 4-Clause License"]
+
+[project.urls]
+Homepage = "https://github.com/Idriss975/reflex_react_toastify"
+Issues = "https://github.com/Idriss975/reflex_react_toastify/issues"
+
+[project.optional-dependencies]
+dev = ["build", "twine"]
+
+[tool.setuptools.packages.find]
+where = ["custom_components"]

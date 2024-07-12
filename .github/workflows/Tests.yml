@@ -1,0 +1,34 @@
+name: Tests on commits
+
+on:
+  workflow_call:
+
+jobs:
+    Import_test:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout
+          uses: actions/Checkout@v4
+        
+        - name: Set up Python
+          uses: actions/setup-python@v3
+          with:
+            python-version: '3.8'
+        
+        - name: Install dependencies
+          run: |
+            python -m pip install --upgrade pip
+            pip install reflex
+          
+        - name: Will it run ?
+          run: python -c "import reflex_popout_alert"
+    
+    Unit_Tests:
+      runs-on: ubuntu-latest
+      needs: Import_test
+      steps:
+        - name: Checkout
+          uses: actions/Checkout@v4
+
+        - name: TODO Figure out how to unit test
+          run: echo Sun is shining.
