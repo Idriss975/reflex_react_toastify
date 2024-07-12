@@ -21,7 +21,7 @@ jobs:
             pip install reflex
           
         - name: Will it run ?
-          run: python -c "import reflex_popout_alert"
+          run: python -c "from custom_components import reflex_react_toastify"
     
     Unit_Tests:
       runs-on: ubuntu-latest

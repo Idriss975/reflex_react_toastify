@@ -43,9 +43,9 @@ jobs:
             - name: Upload Artifact
               uses: actions/upload-artifact@v4
               with:
-                name: artifact-${{ GITHUB.ref }}
+                name: artifact-${{ GITHUB.ref_name }}
                 path: ~/new/artifact
                 if-no-files-found: error
             
             - id: Output
-              run: echo "arti_name=artifact-${{ GITHUB.ref }}" >> $GITHUB_OUTPUT
+              run: echo "arti_name=artifact-${{ GITHUB.ref_name }}" >> $GITHUB_OUTPUT

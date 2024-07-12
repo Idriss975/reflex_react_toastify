@@ -16,7 +16,7 @@ dependencies = ["reflex>=0.4.2"]
 
 classifiers = [
     "Development Status :: 4 - Beta",
-    "License :: OSI Approved :: BSD 4-Clause License"]
+    "License :: OSI Approved :: BSD License"]
 
 [project.urls]
 Homepage = "https://github.com/Idriss975/reflex_react_toastify"
